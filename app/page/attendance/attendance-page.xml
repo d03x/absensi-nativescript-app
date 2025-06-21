@@ -1,0 +1,10 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" navigatedTo="onNavigatedTo"
+    xmlns:ui="@nativescript/mlkit-core" 
+>
+    <StackLayout>
+        <Image id="image" width="200" height="200" />
+        <Button text="Capture" tap="capture" />
+        <Button text="Pick From Galery" tap="pickImage" />
+        <Button text="BARCODE PRESENSI" tap="bracodePresensi" />
+    </StackLayout>
+</Page>

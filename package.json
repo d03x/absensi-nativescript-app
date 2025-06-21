@@ -1,0 +1,24 @@
+{
+  "name": "absensi-app",
+  "main": "app/app.ts",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@nativescript/camera": "^7.0.0",
+    "@nativescript/core": "~8.9.0",
+    "@nativescript/imagepicker": "^5.0.0",
+    "@nativescript/mlkit-barcode-scanning": "^3.0.0",
+    "@nativescript/mlkit-core": "^3.0.1",
+    "@nativescript/mlkit-face-detection": "^3.0.0",
+    "@nativescript/mlkit-text-recognition": "^3.0.0",
+    "@nativescript/theme": "^3.1.0",
+    "sass": "^1.89.2",
+    "sass-loader": "^16.0.5"
+  },
+  "devDependencies": {
+    "@nativescript/android": "8.9.1",
+    "@nativescript/types": "~8.9.0",
+    "@nativescript/webpack": "~5.0.0",
+    "typescript": "~5.4.0"
+  }
+}

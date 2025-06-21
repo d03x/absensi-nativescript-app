@@ -1,0 +1,50 @@
+<Page class="page-login" navigatingTo="onNavigatingTo" actionBarHidden="true" xmlns="http://www.nativescript.org/tns.xsd">
+    <ScrollView>
+        <FlexboxLayout tap="dismishKeyboard" class="login">
+            <StackLayout>
+                <FlexboxLayout
+                    class="login-header"
+                    alignContent="center"
+                    alignItems="center"
+                    flexDirection="column">
+                    <Image
+                        stretch="none"
+                        src="~/assets/logo.webp"
+                    />
+                    <Label
+                        text="PresensiQ" class="login-header-title"
+                    />
+                    <Label
+                        text="Smart Attendance And Payroll System"
+                        class="login-header-subtitle"
+                        textWrap="true"
+                    />
+                </FlexboxLayout>
+                <FlexboxLayout flexDirection="column" width="100%">
+                    <StackLayout class="form-group">
+                        <Label text="Masukan Email" textWrap="true" />
+                        <TextField
+                            text="{{ email }}"
+                            autocorrect="false"
+                            returnKeyType="next"
+                            hint="Masukan email anda"
+                        />
+                    </StackLayout>
+                    <StackLayout class="form-group">
+                        <Label text="Kata Sandi" textWrap="true" />
+                        <TextField text="{{password}}" hint="Masukan password anda" secure="true" />
+                    </StackLayout>
+                    <Button tap="doLogin" text="login" />
+                    <FlexboxLayout justifyContent="center" alignItems="center"
+                        class="divider-container">
+                        <StackLayout orientation="horizontal" class="divider-line"></StackLayout>
+                        <Label text="Atau" class="divider-text" />
+                        <StackLayout orientation="horizontal" class="divider-line"></StackLayout>
+                    </FlexboxLayout>
+                    <Button class="btn-login-google" width="46%" text="Login Google" />
+                    <Button class="btn-login-facebook" width="46%" text="Login Facebook" />
+                </FlexboxLayout>
+            </StackLayout>
+        </FlexboxLayout>
+    </ScrollView>
+</Page>

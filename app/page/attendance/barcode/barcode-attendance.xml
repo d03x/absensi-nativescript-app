@@ -1,0 +1,21 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" navigatingTo="navigatingTo"
+    xmlns:ui="@nativescript/mlkit-core"
+>
+    <StackLayout class="barcode-attendance">
+
+        <ui:MLKitView
+            class="qrcode-cam"
+            loaded="{{onLoaded}}"
+            height="300"
+            width="300"
+            cameraPosition="back"
+            detectionType="barcode"
+            detection="{{onDetection}}"
+        />
+        <Label class="barcode-text" text="{{barcode}}" textWrap="true" />
+        <FlexboxLayout>
+            <Button width="90%" text="TOGGLE CAM" tap="{{toggleCam}}" />
+            <Button width="90%" text="TORCH ON" tap="{{torchToggle}}" />
+        </FlexboxLayout>
+    </StackLayout>
+</Page>
