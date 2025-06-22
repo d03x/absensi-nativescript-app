@@ -6,8 +6,25 @@ type Location = {
   speed: number;
   acuracy: number;
 };
+export const isLocationEnabled = () => {
+  if (Application.android) {
+    const androidContext = Utils.android.getApplicationContext();
+    const locationManager = androidContext.getSystemService(
+      android.content.Context.LOCATION_SERVICE
+    ) as android.location.LocationManager;
 
-const requestLocationPermisions = () => {
+    return (
+      locationManager.isProviderEnabled(
+        android.location.LocationManager.GPS_PROVIDER
+      ) ||
+      locationManager.isProviderEnabled(
+        android.location.LocationManager.NETWORK_PROVIDER
+      )
+    );
+  }
+  return false;
+};
+export const requestLocationPermisions = () => {
   return new Promise((resolve, reject) => {
     if (Application.android) {
       const applicationContext = Utils.android.getApplicationContext();
@@ -89,11 +106,11 @@ const getLocation = async (options?: {
           onLocationChanged: (location: any) => {
             locationManager.removeUpdates(locationListener);
             resolve({
-              altitude: location.getAltitude(),
-              speed: location.getSpeed(),
-              acuracy: location.getAccuracy(),
-              latitude: location.getLatitude(),
-              longitude: location.getLongitude(),
+              altitude: location?.getAltitude(),
+              speed: location?.getSpeed(),
+              acuracy: location?.getAccuracy(),
+              latitude: location?.getLatitude(),
+              longitude: location?.getLongitude(),
             });
           },
           onFlushComplete: (requestCode: number) => {},
