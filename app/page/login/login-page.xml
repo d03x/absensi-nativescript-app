@@ -31,13 +31,15 @@
                             rounded="100"
                             text="{{ email }}"
                             autocorrect="false"
-                            returnKeyType="next"
+                            returnKeyType="done"
                             hint="Masukan email anda"
                         />
                     </StackLayout>
                     <StackLayout class="form-group">
                         <Label text="Kata Sandi" textWrap="true" />
-                        <comp:InputPassword text="{{password}}" hint="Masukan password anda"
+                        <comp:InputPassword
+                            text="{{password}}"
+                            hint="Masukan password Silaing"
                             secure="true" />
                     </StackLayout>
                     <Button tap="doLogin" text="login" />

@@ -1,44 +1,87 @@
-import { Color, Property, TextField } from "@nativescript/core";
-const roundedProperty = new Property<BaseInput, number>({
-  name: "rounded",
-  defaultValue: 5,
+import {
+  FlexboxLayout,
+  Screen,
+  Label,
+  TextField,
+  Color,
+  Property,
+  EventData,
+} from "@nativescript/core";
+
+const textProperty = new Property<BaseInput, any>({
+  name: "text",
+  defaultValue: "",
   affectsLayout: true,
 });
-class BaseInput extends TextField {
-  private rounded = 9;
+class BaseInput extends FlexboxLayout {
+  public static textChangeEvent = "textChange";
+
+  protected _input: TextField;
+  protected _label: Label;
   constructor() {
     super();
-    this.testID = "input";
-    this.className = "input";
-    this._initializeStyle();
-    this._setupEvents();
+    this.className = "input-password";
+    this._setupView();
   }
-  private _initializeStyle() {
-    this.style.fontSize = 13;
+  protected _configureFlexBox() {
+    this.flexDirection = "row";
+    this.alignItems = "center";
+    this.justifyContent = "space-between";
+    this.width = Screen.mainScreen.widthDIPs;
     this.borderWidth = 1;
-    this.paddingTop = 8;
-    this.borderRadius = this.rounded;
-    this.margin = 0;
-    this.paddingBottom = 8;
-    this.paddingRight = 10;
+    this.borderRadius = 9;
     this.borderColor = new Color("#CCCCCC");
-    this.color = new Color("#333333");
-    this.placeholderColor = new Color("#999999");
-    this.paddingLeft = 10;
-    this.fontWeight = "400";
-  }
-  [roundedProperty.setNative](value: number) {
-    this.rounded = value;
-  }
-  private _setupEvents() {
-    this.on("focus", () => {
+    this._input.on("focus", () => {
       this.borderColor = new Color("#999999");
     });
-    this.on("blur", () => {
+    this._input.on("blur", () => {
       this.borderColor = new Color("#CCCCCC");
     });
   }
+  protected _configureInput() {
+    this._input.flexGrow = 1;
+    this._input.padding = 10;
+    this._input.borderWidth = 0;
+    this._input.margin = 0;
+    /////////// INPUT CHANGE HANDLE /////////////
+    this._input.on("textChange", () => {
+      const newValue = this._input.text;
+      this.notifyPropertyChange("text", newValue);
+      this.notify({
+        eventName: BaseInput.textChangeEvent,
+        object: this,
+        value: newValue,
+      });
+    });
+  }
+  protected _setupView() {
+    ///////////INPUT////////////
+    this._input = new TextField();
+    this._configureInput();
+    this._configureFlexBox();
+    this.addChild(this._input);
+  }
+
+  [textProperty.setNative](value: string) {
+    this._input.text = value;
+  }
+
+  get text() {
+    return this._input.text;
+  }
+  set text(value: any) {
+    this._input.text = value;
+  }
+
+  set hint(value: string) {
+    this._input.hint = value;
+  }
+  get hint() {
+    return this._input.hint;
+  }
+  get input(): TextField {
+    return this._input;
+  }
 }
 export default BaseInput;
-
-roundedProperty.register(BaseInput);
+textProperty.register(BaseInput);
