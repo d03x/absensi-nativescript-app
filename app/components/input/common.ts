@@ -30,6 +30,7 @@ class BaseInput extends FlexboxLayout {
     this.width = Screen.mainScreen.widthDIPs;
     this.borderWidth = 1;
     this.borderRadius = 9;
+    this.backgroundColor = new Color("#FFFFFF");
     this.borderColor = new Color("#CCCCCC");
     this._input.on("focus", () => {
       this.borderColor = new Color("#999999");

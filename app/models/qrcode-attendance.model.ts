@@ -62,11 +62,6 @@ export class BarcodeAttendanceModel extends Observable {
   private _playCamera() {
     this._camera.pause = false;
   }
-  /**
-   *
-   * @param data
-   * @returns
-   */
   private _getQrCodeValue(data: BarcodeResult): {
     bounds: Bounds;
     value: string;
@@ -76,17 +71,14 @@ export class BarcodeAttendanceModel extends Observable {
       value: data?.rawValue,
     };
   }
-  /**
-   *
-   * @param event DetectionEvent
-   */
+
   public onDetection(event: DetectionEvent) {
     if (event.type === DetectionType.Barcode) {
       const qrcode = this._getQrCodeValue(event.data[0]);
       const qrcodeData = qrcode.value;
       if (qrcodeData) {
         this.set("barcode", qrcodeData);
-        this.notifyPropertyChange("barcodeData", this.barcode);
+        this.notifyPropertyChange("qrcode-data", this.barcode);
         this._stopCamera();
       }
     }

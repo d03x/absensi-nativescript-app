@@ -1,5 +1,5 @@
 import { Observable } from "@nativescript/core";
-
+//ini adalah bagian dari model
 export class LoginPageModel extends Observable {
   private _email: string;
   private _password: string = "WADUK";

@@ -8,6 +8,7 @@
     "@nativescript/camera": "^7.0.0",
     "@nativescript/core": "~8.9.0",
     "@nativescript/imagepicker": "^5.0.0",
+    "@nativescript/local-notifications": "^6.4.0",
     "@nativescript/mlkit-barcode-scanning": "^3.0.0",
     "@nativescript/mlkit-core": "^3.0.1",
     "@nativescript/mlkit-face-detection": "^3.0.0",

@@ -5,7 +5,6 @@
 >
     <ScrollView>
         <StackLayout class="scanner-container">
-            <comp:Input text="{{barcode}}"/>
             <!-- Scanner frame with animation -->
             <GridLayout rows="*" columns="*" class="scanner-frame">
                 <comp:Camera
@@ -15,13 +14,17 @@
                     cameraPosition="back"
                     detection="{{onDetection}}"
                 />
-
-                <StackLayout  row="1" col="1" class="scan-box">
-                </StackLayout>
+                <StackLayout
+                    row="1"
+                    col="1"
+                    class="scan-box"
+                />
             </GridLayout>
 
             <!-- Scanned content -->
-            <Label text="{{ barcode || 'Scan a QR code to get started' }}" textWrap="true"
+            <Label
+                text="{{ barcode || 'Scan a QR code to get started' }}"
+                textWrap="true"
                 class="scan-result" />
 
             <!-- Action buttons -->

@@ -8,6 +8,7 @@
         "@nativescript/camera": "^7.0.0",
         "@nativescript/core": "~8.9.0",
         "@nativescript/imagepicker": "^5.0.0",
+        "@nativescript/local-notifications": "^6.4.0",
         "@nativescript/mlkit-barcode-scanning": "^3.0.0",
         "@nativescript/mlkit-core": "^3.0.1",
         "@nativescript/mlkit-face-detection": "^3.0.0",
@@ -96,6 +97,8 @@
 
     "@nativescript/imagepicker": ["@nativescript/imagepicker@5.0.0", "", { "dependencies": { "@nativescript-community/perms": "^2.3.1" } }, "sha512-/MxVxhuYTU3OMci0m8DzN6Z6FWypsHS4uH3r+F6lE1evMtQ/Hu5T0QH7TrwLFgltWF0PkZ+YAi2bAgrdU1YHdA=="],
 
+    "@nativescript/local-notifications": ["@nativescript/local-notifications@6.4.0", "", { "dependencies": { "@nativescript-community/perms": "^2.3.0", "@nativescript/shared-notification-delegate": "~1.0.0" } }, "sha512-Ey72PbQrxaMbKq/yewbCU3tDjY66N0DUsAsNqXLdgjNZIBOKHAGvk+wpAHyZuFvMHrN89EVpAxGEddRK7YhXBg=="],
+
     "@nativescript/mlkit-barcode-scanning": ["@nativescript/mlkit-barcode-scanning@3.0.0", "", {}, "sha512-afBWvinkNumHYrCEzfpl1fgZW6kI0b5jt99rmsRmGGOAT7LfufpPHhP7+wk6tcrXoqUDMF9vT1QXR8wS2XoFfA=="],
 
     "@nativescript/mlkit-core": ["@nativescript/mlkit-core@3.0.1", "", {}, "sha512-9FzJlpFw5uDnRIt04ceQAWIFN6oW3YNTe4MDhAJkymJTZhXYvqvAWEmEx8mF0gXo70XimjwuWVhCDTgygrtl3A=="],
@@ -105,6 +108,8 @@
     "@nativescript/mlkit-text-recognition": ["@nativescript/mlkit-text-recognition@3.0.0", "", {}, "sha512-SJ6cLnxbQoCi1m7Svyi/YxJhTOza+vbxVntqS7vQoqoliNlqX2ePidzZkABFD49S6BswyNdI93+PRKH/Fak7Jg=="],
 
     "@nativescript/preview-cli": ["@nativescript/preview-cli@1.0.14", "", { "dependencies": { "fetch-blob": "^3.1.5", "formdata-polyfill": "^4.0.10", "webpackbar": "5.0.2" }, "bin": { "preview-cli": "dist/index.js" } }, "sha512-+bBbm4kTA2KysbJjga+ccCCyHY6E+t0rQyXo9Xok2/belhLuA//XZOYFGHtzl6JMPWg/e9LqjUG1h4LONnKIsg=="],
+
+    "@nativescript/shared-notification-delegate": ["@nativescript/shared-notification-delegate@1.0.2", "", {}, "sha512-Wh6F1WH9Aj23K+nyolA5MrA6MXku/5rSPt9r20ekbyx2FkRpBr0stjg4uD6KSyUvWY8YT+KQ9WlOUzhq7g7Ycw=="],
 
     "@nativescript/theme": ["@nativescript/theme@3.1.0", "", {}, "sha512-LTo0k/1HbwuFl9vTNfeOFtHuXf/BEVKROeaLZJbHX8U6DoUc+VprF46v6E9EFALOOPgxsgAJFtnEdOFDa26Ogw=="],
 
