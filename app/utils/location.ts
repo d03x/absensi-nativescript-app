@@ -1,4 +1,4 @@
-import { Application,  Utils } from "@nativescript/core";
+import { Application, Utils } from "@nativescript/core";
 type Location = {
   altitude: number;
   latitude: number;
@@ -6,7 +6,51 @@ type Location = {
   speed: number;
   acuracy: number;
 };
-const getLocation = (options?: {
+
+const requestLocationPermisions = () => {
+  return new Promise((resolve, reject) => {
+    if (Application.android) {
+      const applicationContext = Utils.android.getApplicationContext();
+      const permision = android.Manifest.permission.ACCESS_FINE_LOCATION;
+      if (
+        androidx.core.content.ContextCompat.checkSelfPermission(
+          applicationContext,
+          permision
+        ) === android.content.pm.PackageManager.PERMISSION_GRANTED
+      ) {
+        resolve(true);
+        return;
+      }
+
+      const activity =
+        Application.android.foregroundActivity ||
+        Application.android.startActivity;
+
+      androidx.core.app.ActivityCompat.requestPermissions(
+        activity,
+        [permision],
+        1001 // request code
+      );
+      activity.onRequestPermissionsResult = (
+        requestCode,
+        permisions,
+        grantResultss
+      ) => {
+        if (requestCode === 1001) {
+          resolve(
+            grantResultss[0] ===
+              android.content.pm.PackageManager.PERMISSION_GRANTED
+          );
+        }
+      };
+    } else if (Application.ios) {
+      resolve(false);
+    } else {
+      resolve(false);
+    }
+  });
+};
+const getLocation = async (options?: {
   provider: "gps" | "network";
   mintime?: number;
   minDistance?: number;
@@ -25,59 +69,54 @@ const getLocation = (options?: {
     const provider = options.provider || "gps";
     const minTime = options.mintime || 10000;
     const minDistance = options.minDistance || 10;
-
-    //checkPermision
-    if (
-      androidx.core.content.ContextCompat.checkSelfPermission(
-        Utils.android.getApplicationContext(),
-        android.Manifest.permission.ACCESS_FINE_LOCATION
-      ) != android.content.pm.PackageManager.PERMISSION_GRANTED
-    ) {
-      reject(new Error("Location permission not granted"));
-      return;
-    }
-    const lastKnownLocation = locationManager.getLastKnownLocation(
-      provider === "gps"
-        ? android.location.LocationManager.GPS_PROVIDER
-        : android.location.LocationManager.NETWORK_PROVIDER
-    );
-    if (lastKnownLocation) {
-      resolve({
-        altitude: lastKnownLocation.getAltitude(),
-        speed: lastKnownLocation.getSpeed(),
-        acuracy: lastKnownLocation.getAccuracy(),
-        latitude: lastKnownLocation.getLatitude(),
-        longitude: lastKnownLocation.getLongitude(),
-      });
-    }
-    const locationListener = new android.location.LocationListener({
-      onLocationChanged: (location: any) => {
-        locationManager.removeUpdates(locationListener);
-        resolve({
-          altitude: location.getAltitude(),
-          speed: location.getSpeed(),
-          acuracy: location.getAccuracy(),
-          latitude: location.getLatitude(),
-          longitude: location.getLongitude(),
+    requestLocationPermisions()
+      .then(() => {
+        const lastKnownLocation = locationManager.getLastKnownLocation(
+          provider === "gps"
+            ? android.location.LocationManager.GPS_PROVIDER
+            : android.location.LocationManager.NETWORK_PROVIDER
+        );
+        if (lastKnownLocation) {
+          resolve({
+            altitude: lastKnownLocation.getAltitude(),
+            speed: lastKnownLocation.getSpeed(),
+            acuracy: lastKnownLocation.getAccuracy(),
+            latitude: lastKnownLocation.getLatitude(),
+            longitude: lastKnownLocation.getLongitude(),
+          });
+        }
+        const locationListener = new android.location.LocationListener({
+          onLocationChanged: (location: any) => {
+            locationManager.removeUpdates(locationListener);
+            resolve({
+              altitude: location.getAltitude(),
+              speed: location.getSpeed(),
+              acuracy: location.getAccuracy(),
+              latitude: location.getLatitude(),
+              longitude: location.getLongitude(),
+            });
+          },
+          onFlushComplete: (requestCode: number) => {},
+          onStatusChanged: (
+            provider: string,
+            status: number,
+            extras: android.os.Bundle
+          ) => {},
+          onProviderEnabled: (provider: string) => {},
+          onProviderDisabled: (provider: string) => {},
         });
-      },
-      onFlushComplete: (requestCode: number) => {},
-      onStatusChanged: (
-        provider: string,
-        status: number,
-        extras: android.os.Bundle
-      ) => {},
-      onProviderEnabled: (provider: string) => {},
-      onProviderDisabled: (provider: string) => {},
-    });
-    locationManager.requestLocationUpdates(
-      provider === "gps"
-        ? android.location.LocationManager.GPS_PROVIDER
-        : android.location.LocationManager.NETWORK_PROVIDER,
-      minTime,
-      minDistance,
-      locationListener
-    );
+        locationManager.requestLocationUpdates(
+          provider === "gps"
+            ? android.location.LocationManager.GPS_PROVIDER
+            : android.location.LocationManager.NETWORK_PROVIDER,
+          minTime,
+          minDistance,
+          locationListener
+        );
+      })
+      .catch(() => {
+        reject(new Error("Location permission not granted"));
+      });
   });
 };
 
