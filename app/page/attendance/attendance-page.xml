@@ -1,5 +1,6 @@
-<Page xmlns="http://www.nativescript.org/tns.xsd" navigatedTo="onNavigatedTo"
-    xmlns:ui="@nativescript/mlkit-core" 
+<Page
+    xmlns="http://www.nativescript.org/tns.xsd"
+    navigatedTo="onNavigatedTo"
 >
     <StackLayout>
         <Image id="image" width="200" height="200" />

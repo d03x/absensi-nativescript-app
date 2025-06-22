@@ -12,15 +12,17 @@ export const onNavigatedTo = async (args: NavigationData) => {
   const perms = await camera.requestPermissions();
   if (perms.Success) {
     console.log("Granted");
-  } else {
-    Dialogs.alert("Failded");
   }
 };
 
-export const bracodePresensi = ()=>{
-  Frame.topmost().navigate(AppPage.attendance_barcode)
-}
-
+export const bracodePresensi = () => {
+  Frame.topmost().navigate({
+      moduleName:AppPage.attendance_qrcode,
+      transition : {
+        name : "slideTop"
+      }
+  });
+};
 
 /**
  * manual capture
@@ -40,8 +42,6 @@ export const capture = () => {
         image.src = imageAsset.android;
         console.log(imageAsset.android);
       });
-  } else {
-    Dialogs.alert("Failded");
   }
 };
 /**
@@ -49,7 +49,7 @@ export const capture = () => {
  */
 export const pickImage = () => {
   let imageobj: ImagePicker = imagePickerPlugin.create({
-    mediaType : 1,
+    mediaType: 1,
     mode: "single",
     android: { use_photo_picker: true },
   });

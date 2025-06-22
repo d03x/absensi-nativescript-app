@@ -1,4 +1,8 @@
-<Page class="page-login" navigatingTo="onNavigatingTo" actionBarHidden="true" xmlns="http://www.nativescript.org/tns.xsd">
+<Page class="page-login"
+    xmlns:comp="./components"
+    navigatingTo="onNavigatingTo"
+    actionBarHidden="true"
+    xmlns="http://www.nativescript.org/tns.xsd">
     <ScrollView>
         <FlexboxLayout tap="dismishKeyboard" class="login">
             <StackLayout>
@@ -23,7 +27,8 @@
                 <FlexboxLayout flexDirection="column" width="100%">
                     <StackLayout class="form-group">
                         <Label text="Masukan Email" textWrap="true" />
-                        <TextField
+                        <comp:Input
+                            rounded="100"
                             text="{{ email }}"
                             autocorrect="false"
                             returnKeyType="next"
@@ -32,7 +37,8 @@
                     </StackLayout>
                     <StackLayout class="form-group">
                         <Label text="Kata Sandi" textWrap="true" />
-                        <TextField text="{{password}}" hint="Masukan password anda" secure="true" />
+                        <comp:InputPassword text="{{password}}" hint="Masukan password anda"
+                            secure="true" />
                     </StackLayout>
                     <Button tap="doLogin" text="login" />
                     <FlexboxLayout justifyContent="center" alignItems="center"

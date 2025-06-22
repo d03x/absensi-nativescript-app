@@ -1,0 +1,37 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" navigatingTo="navigatingTo"
+    xmlns:ui="@nativescript/mlkit-core"
+    xmlns:comp="./components"
+    class="presence_page"
+>
+    <ScrollView>
+        <StackLayout class="scanner-container">
+            <comp:Input text="BADOY"/>
+            <!-- Scanner frame with animation -->
+            <GridLayout rows="*" columns="*" class="scanner-frame">
+                <comp:Camera
+                    size="300"
+                    class="qrcode-cam"
+                    loaded="{{onLoaded}}"
+                    cameraPosition="back"
+                    detection="{{onDetection}}"
+                />
+
+                <StackLayout row="1" col="1" class="scan-box">
+                    <StackLayout class="scan-line" loaded="scanLineLoaded"></StackLayout>
+                </StackLayout>
+            </GridLayout>
+
+            <!-- Scanned content -->
+            <Label text="{{ barcode || 'Scan a QR code to get started' }}" textWrap="true"
+                class="scan-result" />
+
+            <!-- Action buttons -->
+            <FlexboxLayout class="action-btns" alignItems="center" justifyContent="center">
+                <Image tap="{{start}}" width="60" height="60" class="action-btn"
+                    src="~/assets/button/play.png" />
+                <Image tap="{{torchToggle}}" width="60" height="60" class="action-btn"
+                    src="~/assets/button/flash_on.png" />
+            </FlexboxLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

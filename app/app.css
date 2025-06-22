@@ -1,9 +1,10 @@
 @import "@nativescript/theme/css/core.css";
 @import "@nativescript/theme/css/default.css";
+@import "./css/attendance.css";
 Page {
   background-color: #f2f2f2;
 }
-TextField {
+/* TextField {
   padding: 10;
   border-width: 2;
   transition: all 0.5s ease-in-out;
@@ -11,10 +12,10 @@ TextField {
   margin-right: 0;
   background-color: white;
   border-radius: 10;
-}
-TextField:focus {
+} */
+/* TextField:focus {
   border-color: #166fe5;
-}
+} */
 Button {
   margin-right: 0;
   margin-left: 0;
@@ -48,58 +49,47 @@ Button {
 }
 
 .divider-container {
-    margin: 20 0;
-    flex-direction: row;
-    width: 100%;
-    align-items: center;
+  margin: 20 0;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
 }
 
 .divider-line {
-    height: 1;
-    background-color: #e0e0e0;
-    flex-grow: 1;
-    margin: 0 8;
+  height: 1;
+  background-color: #e0e0e0;
+  flex-grow: 1;
+  margin: 0 8;
 }
 
 .divider-text {
-    color: #6c757d;
-    font-size: 12;
-    padding: 0 8;
-    text-align: center;
-}
-
-Button.btn-login-google{
-     background-color: #ffffff;
-    color: #757575;
-    border-width: 1;
-    border-color: #e0e0e0;
-}
-Button.btn-login-google:active{
-    background-color: #f5f5f5;
-}
-Button.btn-login-facebook{
-    background-color: #1877f2;  /* Warna biru Facebook */
-    color: #ffffff;
-}
-Button.btn-login-facebook:active{
-        background-color: #166fe5;
-}
-Label.login-header-title{
-    font-size: 25;
-    color: #166fe5;
-    margin-top: 10px;
-    font-weight: 600;
-
-}
-
-.qrcode-cam{
-  overflow: hidden;
-}
-.barcode-attendance{
-  margin-top: 20;
-  padding: 0 20;
-}
-.barcode-attendance .barcode-text{
-  font-size: 20px;
+  color: #6c757d;
+  font-size: 12;
+  padding: 0 8;
   text-align: center;
 }
+
+Button.btn-login-google {
+  background-color: #ffffff;
+  color: #757575;
+  border-width: 1;
+  border-color: #e0e0e0;
+}
+Button.btn-login-google:active {
+  background-color: #f5f5f5;
+}
+Button.btn-login-facebook {
+  background-color: #1877f2; /* Warna biru Facebook */
+  color: #ffffff;
+}
+Button.btn-login-facebook:active {
+  background-color: #166fe5;
+}
+Label.login-header-title {
+  font-size: 25;
+  color: #0B5ED7;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+
