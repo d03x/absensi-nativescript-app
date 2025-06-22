@@ -1,15 +1,18 @@
-import {
-  Button,
-  EventData,
-  Page,
-  Utils,
-} from "@nativescript/core";
+import { Button, Dialogs, EventData, Page, Utils } from "@nativescript/core";
 import { NavigationData } from "@nativescript/core/ui/frame";
 import { LoginPageModel } from "~/models/login-page.model";
 import { getArgsContext, getModelContext } from "~/utils/application";
+import getLocation from "~/utils/location";
 import MakeToast from "~/utils/toast";
 export const onNavigatingTo = (args: NavigationData) => {
   const page = <Page>args.object;
+  getLocation({
+    provider: "gps",
+  }).then((e) => {
+    Dialogs.alert(e.latitude);
+  }).catch(e=>{
+    Dialogs.alert(e)
+  });
   page.bindingContext = new LoginPageModel();
 };
 
@@ -27,6 +30,5 @@ export const doLogin = async (args: EventData) => {
   //     name: "slideLeft",
   //   },
   // });
-    MakeToast("Login berhasil silahkan login","short");
-
+  MakeToast("Login berhasil silahkan login", "short");
 };
