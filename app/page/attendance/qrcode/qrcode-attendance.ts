@@ -21,11 +21,3 @@ export function navigatingTo(args: NavigationData) {
     }
   });
 }
-export function scanLineLoaded(args: EventData) {
-  const scanLine = args.object as View;
-  scanLine.animate({
-    translate: { x: 0, y: 250 },
-    duration: 2000,
-    iterations: Number.POSITIVE_INFINITY,
-  });
-}

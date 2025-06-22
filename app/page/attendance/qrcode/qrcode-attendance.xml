@@ -5,7 +5,7 @@
 >
     <ScrollView>
         <StackLayout class="scanner-container">
-            <comp:Input text="BADOY"/>
+            <comp:Input text="{{barcode}}"/>
             <!-- Scanner frame with animation -->
             <GridLayout rows="*" columns="*" class="scanner-frame">
                 <comp:Camera
@@ -16,8 +16,7 @@
                     detection="{{onDetection}}"
                 />
 
-                <StackLayout row="1" col="1" class="scan-box">
-                    <StackLayout class="scan-line" loaded="scanLineLoaded"></StackLayout>
+                <StackLayout  row="1" col="1" class="scan-box">
                 </StackLayout>
             </GridLayout>
 
