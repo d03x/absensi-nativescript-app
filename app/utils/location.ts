@@ -1,4 +1,4 @@
-import { Application, knownFolders, Utils } from "@nativescript/core";
+import { Application,  Utils } from "@nativescript/core";
 type Location = {
   altitude: number;
   latitude: number;
