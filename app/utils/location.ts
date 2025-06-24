@@ -105,13 +105,15 @@ const getLocation = async (options?: {
         const locationListener = new android.location.LocationListener({
           onLocationChanged: (location: any) => {
             locationManager.removeUpdates(locationListener);
-            resolve({
-              altitude: location?.getAltitude(),
-              speed: location?.getSpeed(),
-              acuracy: location?.getAccuracy(),
-              latitude: location?.getLatitude(),
-              longitude: location?.getLongitude(),
-            });
+            if (location) {
+              resolve({
+                altitude: location?.getAltitude(),
+                speed: location?.getSpeed(),
+                acuracy: location?.getAccuracy(),
+                latitude: location?.getLatitude(),
+                longitude: location?.getLongitude(),
+              });
+            }
           },
           onFlushComplete: (requestCode: number) => {},
           onStatusChanged: (
