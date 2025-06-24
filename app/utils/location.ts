@@ -105,6 +105,11 @@ const getLocation = async (options?: {
         const locationListener = new android.location.LocationListener({
           onLocationChanged: (location: any) => {
             locationManager.removeUpdates(locationListener);
+            const isFake = location?.isFromMockProvider?.() || false;
+            if (isFake) {
+              reject(new Error("Fake location detected"));
+              return;
+            }
             if (location) {
               resolve({
                 altitude: location?.getAltitude(),
